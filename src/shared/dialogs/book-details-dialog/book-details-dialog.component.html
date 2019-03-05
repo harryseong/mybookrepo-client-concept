@@ -1,0 +1,52 @@
+<div mat-dialog-content class="book-info-dialog">
+
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutGap.xs="0.5em" class="book-header">
+    <div fxLayoutAlign="center start">
+      <img [src]="data.book.coverImageURL" alt="" class="book-cover-thumbnail" *ngIf="data.book.coverImageURL!=null">
+      <div class="book-cover-thumbnail-blank" *ngIf="data.book.coverImageURL==null" fxLayoutAlign="center center">
+        No Book Cover
+      </div>
+    </div>
+
+    <div fxLayout="column" fxLayoutGap="0.5em" fxLayoutAlign="start start">
+      <div>
+        <div class="book-title">{{data.book.title}}</div>
+        <div class="book-author" *ngIf="data.book.authors!=undefined && data.book.authors!=null">
+          <span *ngFor="let author of data.book.authors; let last = last;">
+            <span *ngIf="author!=undefined && author!=null">
+              <span *ngIf="author.firstName!=undefined">{{author.firstName}}&nbsp;</span>
+              <span *ngIf="author.middleName!=undefined">{{author.middleName}}&nbsp;</span>
+              <span *ngIf="author.lastName!=undefined">{{author.lastName}}</span>
+              <span *ngIf="!last">, </span>
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="book-description">
+        {{data.book.description!=null ? data.book.description : 'No description provided.'}}
+      </div>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="book-details" fxLayout="column">
+    <div *ngIf="data.book.publisher!=null"><span class="bold">Publisher:</span> {{data.book.publisher}}</div>
+    <div *ngIf="data.book.publishedDate!=null"><span class="bold">Published:</span> {{data.book.publishedDate}}</div>
+    <div *ngIf="data.book.pageCount!=null"><span class="bold">Pages:</span> {{data.book.pageCount}}</div>
+    <div *ngIf="data.book.isbn10!=null"><span class="bold">ISBN 10:</span> {{data.book.isbn10}}</div>
+    <div *ngIf="data.book.isbn13!=null"><span class="bold">ISBN 13:</span> {{data.book.isbn13}}</div>
+    <div *ngIf="data.book.otherIdType!=null"><span class="bold">Other ID Type:</span> {{data.book.otherIdType}}</div>
+  </div>
+</div>
+
+<div mat-dialog-actions fxLayoutAlign="end" fxLayoutGap="0.5em">
+  <button mat-stroked-button (click)="closeDialog()">
+    <span><i class="fas fa-times-circle fa-fw"></i>&nbsp;CLOSE</span>
+  </button>
+  <button mat-stroked-button *ngIf="data.type=='VIEW'" (click)="removeBook(data.book)" class="remove-btn">
+    <span><i class="fas fa-minus-circle fa-fw"></i>&nbsp;REMOVE</span></button>
+  <button mat-stroked-button *ngIf="data.type=='NEW'" (click)="addBook(data.book)" class="add-btn">
+    <span><i class="fas fa-plus-circle fa-fw"></i>&nbsp;ADD</span>
+  </button>
+</div>

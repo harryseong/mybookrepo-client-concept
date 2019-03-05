@@ -1,0 +1,13 @@
+<nav class="mat-elevation-z2" [@transitionAnimations]>
+  <mat-toolbar class="nav-toolbar" fxLayout="row" fxLayoutGap="0.5em">
+    <button mat-button class="logo" routerLink="" routerLinkActive="active">
+      <span fxLayout="row" fxLayoutGap="0.1em">
+        <span><i class="fas fa-book"></i></span>
+        <span><i class="fas fa-database"></i></span>
+        <span>&nbsp;{{title}}</span>
+      </span>
+    </button>
+    <span class="spacer"></span>
+    <button mat-stroked-button routerLinkActive="true" routerLink="">LOGOUT</button>
+  </mat-toolbar>
+</nav>

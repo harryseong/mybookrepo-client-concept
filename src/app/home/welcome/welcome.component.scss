@@ -1,0 +1,28 @@
+$bg-color: rgba(226, 255, 237, 0.98);
+$bg-color-hover: rgba(216, 245, 227, 0.98);
+
+.welcome-box {
+  margin: 2em 1em;
+  padding: 1.5em;
+  border-radius: 0.18em;
+  background-color: $bg-color;
+
+  .welcome-header {
+    font-size: 1.5em;
+    font-weight: 500;
+  }
+
+  .welcome-content {
+    font-weight: 400;
+  }
+
+  .welcome-actions {
+    margin-top: 2em;
+
+    button {
+      border-radius: 0.2em;
+      width: 100%;
+      font-size: 1.1em;
+    }
+  }
+}

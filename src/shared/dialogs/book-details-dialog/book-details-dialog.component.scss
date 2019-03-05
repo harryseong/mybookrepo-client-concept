@@ -1,0 +1,50 @@
+.book-info-dialog {
+
+  .book-cover-thumbnail {
+    height: 10em;
+    width: auto;
+  }
+
+  .book-cover-thumbnail-blank {
+    border: solid 1pt rgba(0, 0, 0, 0.8);
+    color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    height: 10em;
+    min-width: 5em;
+    width: 6.6em;
+  }
+
+  .book-header {
+    padding-bottom: 1em;
+
+    .book-title {
+      font-size: 1.2em;
+      font-weight: 500;
+    }
+
+    .book-author {
+      font-style: italic;
+      font-size: 0.8em;
+      font-weight: 300;
+    }
+
+    .book-description {
+      font-size: 0.8em;
+      font-weight: 300;
+    }
+  }
+
+  .book-details {
+    margin: 1em 0;
+    font-size: 0.8em;
+    font-weight: 300;
+
+    .bold {
+      font-weight: 400;
+    }
+  }
+}
+
+.remove-btn {
+  color: rgba(228, 61, 59, 0.95);
+}

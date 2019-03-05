@@ -1,0 +1,68 @@
+<div class="content" fxLayout="column" fxLayoutGap="1em">
+
+  <div fxLayout="row" fxLayoutGap="0.5em">
+    <button mat-stroked-button routerLinkActive="true" routerLink="/library/books">
+      <span><i class="fas fa-chevron-left fa-fw"></i>&nbsp;BACK</span>
+    </button>
+  </div>
+
+  <div class="page-header">Look Up Books</div>
+
+  <form (submit)="lookupBooks()" [formGroup]="lookupBookForm" fxLayout="row"
+        fxLayoutGap="0.5em" fxLayoutGap.xs="0.5em" fxFlex="100" fxLayoutAlign="center center">
+
+    <mat-form-field fxFlex.xs="75" fxFlex.sm="50" fxFlex="25">
+      <mat-label>Title, Author, ISBN</mat-label>
+      <input type="text" matInput formControlName="searchField" class="search-field" #searchField>
+    </mat-form-field>
+
+    <div fxLayoutAlign="center center">
+      <button type="submit" mat-stroked-button>
+        <span><i class="fas fa-search"></i>&nbsp;SEARCH</span>
+      </button>
+    </div>
+
+  </form>
+
+  <div *ngIf="bookSearched">
+    {{bookDTOArray.length>0 ?  bookDTOArray.length + ' Book' + (bookDTOArray.length>1 ? 's' : '') + ' Found' : 'No Books Found'}}
+  </div>
+
+  <div *ngIf="bookSearched" fxLayout="row wrap" fxLayoutAlign="center center" [@bookCardAnimations]>
+
+    <mat-card *ngFor="let bookDTO of bookDTOArray" class="book-card mat-elevation-z0" (click)="openDialog(bookDTO)">
+
+      <mat-card-content>
+
+        <div fxLayout="row" fxLayoutGap="1em" class="book-header">
+          <img src="{{bookDTO.coverImageURL}}" alt="" class="book-cover-thumbnail" *ngIf="bookDTO.coverImageURL!=null">
+          <div class="book-cover-thumbnail-blank" *ngIf="bookDTO.coverImageURL==null" fxLayoutAlign="center center">
+            No Book Cover
+          </div>
+
+          <div fxLayout="column" fxLayoutGap="0.5em" fxLayoutAlign="start start">
+            <div>
+              <div class="book-title">{{abbreviateTitle(bookDTO.title)}}</div>
+              <div class="book-author" *ngIf="bookDTO.authors!=undefined">
+                  <span *ngFor="let author of bookDTO.authors; let last = last;">
+                    <span *ngIf="author!=undefined">
+                      <span *ngIf="author.firstName!=undefined">{{author.firstName}}&nbsp;</span>
+                      <span *ngIf="author.middleName!=undefined">{{author.middleName}}&nbsp;</span>
+                      <span *ngIf="author.lastName!=undefined">{{author.lastName}}</span>
+                      <span *ngIf="!last">, </span>
+                    </span>
+                  </span>
+              </div>
+            </div>
+            <div class="book-description" *ngIf="bookDTO.description!=undefined">
+              {{abbreviateDescription(bookDTO.description)}}
+            </div>
+          </div>
+        </div>
+
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+
+</div>

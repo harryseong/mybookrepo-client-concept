@@ -1,0 +1,17 @@
+<div class="content" fxLayout="column" fxLayoutGap="1em">
+  <div class="page-header">Authors</div>
+
+  <div fxLayout="row" fxLayoutGap="0.5em">
+    <button mat-stroked-button routerLinkActive="true" routerLink="/library">
+      <span><i class="fas fa-chevron-left fa-fw"></i>&nbsp;BACK</span>
+    </button>
+  </div>
+
+  <ul>
+    <li *ngFor="let author of authors">{{author.firstName}} {{author.middleName}} {{author.lastName}}</li>
+  </ul>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid consequuntur deserunt doloribus eum exercitationem, expedita explicabo id impedit inventore laborum mollitia nam odio porro quasi ratione repellat reprehenderit voluptate voluptatem.</p>
+</div>
+
+
