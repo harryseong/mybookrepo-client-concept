@@ -35,6 +35,7 @@ export class BookDetailsDialogComponent {
       rsp => {
         console.log(rsp);
         this.apiService.bookRemovedFromLibrary(book);
+        this.router.navigate(['/library/books']);
         this.closeDialog();
       },
       err => console.error(err)
