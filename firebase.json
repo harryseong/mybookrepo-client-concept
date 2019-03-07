@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/harryseong-books",
+    "public": "dist/domesticbooks-client",
     "ignore": [
       "firebase.json",
       "**/.*",

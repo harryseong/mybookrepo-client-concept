@@ -33,10 +33,13 @@ mat-toolbar.nav-toolbar {
     transition: 0.2s;
 
     .book-cover-thumbnail {
-      height: 9em;
+      height: auto;
+      max-height: 9em;
+      width: 6em;
+      max-width: 6em;
     }
 
-    .book-cover-thumbnail-blank {
+    div.book-cover-thumbnail-blank {
       border: solid 1pt rgba(0, 0, 0, 0.8);
       color: rgba(0, 0, 0, 0.8);
       text-align: center;
