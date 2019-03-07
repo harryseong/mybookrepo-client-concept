@@ -45,8 +45,8 @@ export class BookDTO {
       this.isbn13 = this.formatIdentifier(data.industryIdentifiers, 'isbn13');
       this.otherIdType = this.formatIdentifier(data.industryIdentifiers, 'other');
     }
-    this.authors = this.authors !== undefined ? this.addAuthors(data.authors) : null;
-    this.categories = this.categories !== undefined ? this.addCategories(data.categories) : null;
+    this.authors = data.authors !== undefined ? this.addAuthors(data.authors) : null;
+    this.categories = data.categories !== undefined ? this.addCategories(data.categories) : null;
   }
 
   formatPublishedDate(publishedDate): number {
