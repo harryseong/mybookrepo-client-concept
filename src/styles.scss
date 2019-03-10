@@ -3,92 +3,136 @@
 $bg-color: rgba(226, 255, 237, 0.98);
 $bg-color-hover: rgba(216, 245, 227, 0.98);
 
-body {
+body, .mat-sidenav-content {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   background-color: $bg-color;
 }
 
-app-root {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+.mat-sidenav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .mat-sidenav-content {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+
+    .container {
+      padding: 1em 2em;
+      flex: 1;
+
+      .book-card {
+        margin: 0.3em;
+        width: 20em;
+        height: 10em;
+        border: solid 1pt rgba(0, 0, 0, 0.11);
+        border-radius: 0.2em;
+        background-color: rgba(80, 80, 80, 0);
+        transition: 0.2s;
+
+        .book-cover-thumbnail {
+          height: auto;
+          max-height: 9em;
+          width: 6em;
+          max-width: 6em;
+        }
+
+        div.book-cover-thumbnail-blank {
+          border: solid 1pt rgba(0, 0, 0, 0.8);
+          color: rgba(0, 0, 0, 0.8);
+          text-align: center;
+          height: 9em;
+          min-width: 6em;
+        }
+
+        .book-header {
+          padding-bottom: 1em;
+
+          .book-title {
+            font-size: 1.2em;
+            font-weight: 500;
+          }
+
+          .book-author {
+            font-style: italic;
+            font-size: 0.8em;
+            font-weight: 300;
+          }
+
+          .book-description {
+            font-size: 0.8em;
+            font-weight: 300;
+          }
+        }
+
+        .book-details {
+          padding-top: 1em;
+          font-size: 0.8em;
+          font-weight: 300;
+
+          .bold {
+            font-weight: 400;
+          }
+        }
+      }
+
+      .book-card.xs {
+        width: 100%;
+      }
+
+      .book-card:hover {
+        transform: scale(1.01);
+        background-color: $bg-color-hover;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .view-btn.selected {
+        background-color: $bg-color-hover;
+      }
+    }
+
+    .container.xs {
+      padding: 0.75em 0.75em;
+    }
+
+    footer {
+      height: auto;
+      min-width: 30%;
+      max-width: 100%;
+      position: relative;
+      padding: 1em 2em;
+      bottom: 0;
+      font-size: 1em;
+      font-weight: 300;
+      background-color: $bg-color;
+
+      a {
+        color: rgba(0, 0, 0, 0.9);
+        text-decoration: underline;
+        transition: 0.3s;
+      }
+
+      a:hover, a:visited {
+        color: #000000;
+        text-decoration: underline;
+        transition: 0.3s;
+      }
+    }
+
+    footer.xs {
+      padding: 1em 0.5em;
+    }
+  }
 }
 
 mat-toolbar.nav-toolbar {
   background-color: $bg-color;
   transition: 0.3s;
-}
-
-.container {
-  flex: 1;
-  padding: 1em 2em;
-
-  .book-card {
-    margin: 0.3em;
-    width: 24em;
-    height: 10em;
-    border: solid 1pt rgba(0, 0, 0, 0.11);
-    border-radius: 0.2em;
-    background-color: rgba(80, 80, 80, 0);
-    transition: 0.2s;
-
-    .book-cover-thumbnail {
-      height: auto;
-      max-height: 9em;
-      width: 6em;
-      max-width: 6em;
-    }
-
-    div.book-cover-thumbnail-blank {
-      border: solid 1pt rgba(0, 0, 0, 0.8);
-      color: rgba(0, 0, 0, 0.8);
-      text-align: center;
-      height: 9em;
-      min-width: 6em;
-    }
-
-    .book-header {
-      padding-bottom: 1em;
-
-      .book-title {
-        font-size: 1.2em;
-        font-weight: 500;
-      }
-
-      .book-author {
-        font-style: italic;
-        font-size: 0.8em;
-        font-weight: 300;
-      }
-
-      .book-description {
-        font-size: 0.8em;
-        font-weight: 300;
-      }
-    }
-
-    .book-details {
-      padding-top: 1em;
-      font-size: 0.8em;
-      font-weight: 300;
-
-      .bold {
-        font-weight: 400;
-      }
-    }
-  }
-
-  .book-card:hover {
-    transform: scale(1.01);
-    background-color: $bg-color-hover;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-
-  .view-btn.selected {
-    background-color: $bg-color-hover;
-  }
 }
 
 .spacer {
@@ -104,35 +148,6 @@ mat-toolbar.nav-toolbar {
   background-color: $bg-color;
 }
 
-footer {
-  height: auto;
-  min-width: 30%;
-  max-width: 100%;
-  position: relative;
-  padding: 1em 2em;
-  bottom: 0;
-  font-size: 1em;
-  font-weight: 300;
-  background-color: $bg-color;
-  transition: 0.3s;
-
-  a {
-    color: rgba(0, 0, 0, 0.9);
-    text-decoration: underline;
-    transition: 0.3s;
-  }
-
-  a:hover, a:visited {
-    color: #000000;
-    text-decoration: underline;
-    transition: 0.3s;
-  }
-}
-
-.container.xs {
-  padding: 0.5em;
-}
-
-footer.xs {
-  padding: 1em 0.5em;
+.overflow-x-scroll {
+  overflow-x: scroll;
 }

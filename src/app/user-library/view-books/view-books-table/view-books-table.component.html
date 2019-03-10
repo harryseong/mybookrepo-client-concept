@@ -6,7 +6,7 @@
     </mat-form-field>
   </div>
 
-  <div class="overflow-x">
+  <div class="overflow-x-scroll">
     <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="view-books-table">
       <!-- Cover Image Column -->
       <ng-container matColumnDef="cover">

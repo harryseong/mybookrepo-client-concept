@@ -8,6 +8,10 @@
       </span>
     </button>
     <span class="spacer"></span>
-    <button mat-stroked-button routerLinkActive="true" routerLink="">LOGOUT</button>
+    <div fxHide.lt-sm>
+      <button mat-stroked-button routerLinkActive="true" routerLink="">LOGOUT</button>
+    </div>
+    <button mat-icon-button fxHide.gt-xs (click)="openSidenav()"><i class="fas fa-bars"></i></button>
+
   </mat-toolbar>
 </nav>

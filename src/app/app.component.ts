@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
+import {MatSidenav} from '@angular/material';
+import {SidenavService} from '../shared/services/sidenav/sidenav.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +17,25 @@ import {animate, style, transition, trigger} from '@angular/animations';
     ])
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'Domestic Books';
+  @ViewChild('sidenav')
+  sidenav: MatSidenav;
+  $openSidenavSubscription: Subscription;
+
+  constructor(private sidenavService: SidenavService) {}
+
+  ngOnInit(): void {
+    this.$openSidenavSubscription = this.sidenavService.$openSidenavEvent.subscribe(
+      rsp => this.sidenav.open()
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.$openSidenavSubscription.unsubscribe();
+  }
+
+  close(reason: string) {
+    this.sidenav.close();
+  }
 }

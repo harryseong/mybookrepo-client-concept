@@ -11,11 +11,11 @@
     <span class="spacer"></span>
 
     <div fxLayoutGap="0.2em">
-      <button mat-stroked-button [ngClass]="!isGrid ? 'selected view-btn' : 'view-btn'" (click)="updateBooksDisplayStyle(false)">
+      <button mat-icon-button [ngClass]="!isGrid ? 'selected view-btn' : 'view-btn'" (click)="updateBooksDisplayStyle(false)">
         <i class="fas fa-list-ul fa-sm fa-fw"></i>
       </button>
 
-      <button mat-stroked-button [ngClass]="isGrid ? 'selected view-btn' : 'view-btn'" (click)="updateBooksDisplayStyle(true)">
+      <button mat-icon-button [ngClass]="isGrid ? 'selected view-btn' : 'view-btn'" (click)="updateBooksDisplayStyle(true)">
         <i class="fas fa-th fa-sm fa-fw"></i>
       </button>
     </div>
@@ -23,7 +23,7 @@
   </div>
 
   <div fxLayoutAlign="center">
-    <app-view-books-table [books]="books" (openDialogEvent)="openDialog($event)" *ngIf="books && !isLoading && !isGrid"></app-view-books-table>
+    <app-view-books-table [books]="books" (openDialogEvent)="openDialog($event)" *ngIf="books && !isLoading && !isGrid" class="overflow-x-scroll"></app-view-books-table>
     <app-view-books-cards [books]="books" *ngIf="books && !isLoading && isGrid"></app-view-books-cards>
   </div>
 

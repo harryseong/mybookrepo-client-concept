@@ -1,5 +1,5 @@
 <div fxLayout="row wrap" fxLayoutAlign="center" [@bookCardAnimations]>
-  <mat-card *ngFor="let book of books" class="book-card mat-elevation-z0" (click)="openDialog(book)">
+  <mat-card *ngFor="let book of books" class="book-card mat-elevation-z0" ngClass.lt-sm="xs" (click)="openDialog(book)">
     <mat-card-content>
 
       <div fxLayout="row" fxLayoutGap="1em" class="book-header">
