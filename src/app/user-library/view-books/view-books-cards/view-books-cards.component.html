@@ -1,3 +1,32 @@
-<p>
-  view-books-cards works!
-</p>
+<div fxLayout="row wrap" fxLayoutAlign="center" [@bookCardAnimations]>
+  <mat-card *ngFor="let book of books" class="book-card mat-elevation-z0" (click)="openDialog(book)">
+    <mat-card-content>
+
+      <div fxLayout="row" fxLayoutGap="1em" class="book-header">
+        <img src="{{book.coverImageURL}}" alt="" class="book-cover-thumbnail" *ngIf="book.coverImageURL!=null">
+        <div class="book-cover-thumbnail-blank" *ngIf="book.coverImageURL==null" fxLayoutAlign="center center">
+          No Book Cover
+        </div>
+
+        <div fxLayout="column" fxLayoutGap="0.5em" fxLayoutAlign="start start">
+          <div>
+            <div class="book-title">{{abbreviateTitle(book.title)}}</div>
+            <div class="book-author" *ngIf="book.authors!=undefined && book.authors!=null">
+                  <span *ngFor="let author of book.authors; let last = last;">
+                    <span *ngIf="author!=undefined && author!=null">
+                      <span *ngIf="author.firstName!=undefined">{{author.firstName}}&nbsp;</span>
+                      <span *ngIf="author.middleName!=undefined">{{author.middleName}}&nbsp;</span>
+                      <span *ngIf="author.lastName!=undefined">{{author.lastName}}</span>
+                      <span *ngIf="!last">, </span>
+                    </span>
+                  </span>
+            </div>
+          </div>
+          <div class="book-description">
+            {{book.description!=null ? abbreviateDescription(book.description) : 'No description provided.'}}
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

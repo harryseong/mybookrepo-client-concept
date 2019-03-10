@@ -52,21 +52,7 @@ export class Book {
 @Component({
   selector: 'app-view-books',
   templateUrl: './view-books.component.html',
-  styleUrls: ['./view-books.component.scss'],
-  animations: [
-    trigger('bookCardAnimations', [
-      transition(':enter', [
-        query('.book-card', [
-          style({ opacity: 0, transform: 'translateY(1em)'}),
-          stagger(100, [
-            sequence([
-              animate('0.5s ease', style({ opacity: 1, transform: 'translateY(0)' })),
-            ])
-          ]),
-        ])
-      ]),
-    ])
-  ]
+  styleUrls: ['./view-books.component.scss']
 })
 export class ViewBooksComponent implements OnInit, OnDestroy {
   $allBooks: Subscription;
@@ -104,17 +90,5 @@ export class ViewBooksComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       }
     );
-  }
-
-  public abbreviateTitle = (title: string) => {
-    return title.length > 60 ? title.substr(0, 60).trim() + '.....' : title;
-  }
-
-  public abbreviateDescription = (description: string) => {
-    return description.length > 180 ? description.substr(0, 180).trim() + '.....' : description;
-  }
-
-  openDialog(bookDTO: BookDTO): void {
-    this.dialogService.openBookDetailsDialog(bookDTO, 'VIEW');
   }
 }

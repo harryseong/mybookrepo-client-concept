@@ -1,18 +1,12 @@
 <div class="content" fxLayout="column" fxLayoutGap="1em">
 
-  <div fxLayoutGap="0.2em">
-    <button mat-stroked-button routerLinkActive="true" routerLink="/library">
-      <span><i class="fas fa-chevron-left fa-fw"></i>&nbsp;BACK</span>
-    </button>
+  <div class="page-header">My Books</div>
+
+  <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap.xs="0.2em">
 
     <button mat-stroked-button routerLinkActive="true" routerLink="/library/books/lookup">
       <span><i class="fas fa-search"></i>&nbsp;LOOK UP BOOKS</span>
     </button>
-  </div>
-
-  <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap.xs="0.2em">
-
-    <div class="page-header">My Books</div>
 
     <span class="spacer"></span>
 
@@ -28,42 +22,9 @@
 
   </div>
 
-  <app-view-books-table [books]="books" (openDialogEvent)="openDialog($event)" *ngIf="books && !isLoading && !isGrid"></app-view-books-table>
-
-  <div *ngIf="books && !isLoading && isGrid" fxLayout="row wrap" fxLayoutAlign="center center" [@bookCardAnimations]>
-    <mat-card *ngFor="let book of books" class="book-card mat-elevation-z0" (click)="openDialog(book)">
-
-      <mat-card-content>
-
-        <div fxLayout="row" fxLayoutGap="1em" class="book-header">
-          <img src="{{book.coverImageURL}}" alt="" class="book-cover-thumbnail" *ngIf="book.coverImageURL!=null">
-          <div class="book-cover-thumbnail-blank" *ngIf="book.coverImageURL==null" fxLayoutAlign="center center">
-            No Book Cover
-          </div>
-
-          <div fxLayout="column" fxLayoutGap="0.5em" fxLayoutAlign="start start">
-            <div>
-              <div class="book-title">{{abbreviateTitle(book.title)}}</div>
-              <div class="book-author" *ngIf="book.authors!=undefined && book.authors!=null">
-                <span *ngFor="let author of book.authors; let last = last;">
-                  <span *ngIf="author!=undefined && author!=null">
-                    <span *ngIf="author.firstName!=undefined">{{author.firstName}}&nbsp;</span>
-                    <span *ngIf="author.middleName!=undefined">{{author.middleName}}&nbsp;</span>
-                    <span *ngIf="author.lastName!=undefined">{{author.lastName}}</span>
-                    <span *ngIf="!last">, </span>
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div class="book-description">
-              {{book.description!=null ? abbreviateDescription(book.description) : 'No description provided.'}}
-            </div>
-          </div>
-        </div>
-
-      </mat-card-content>
-
-    </mat-card>
+  <div fxLayoutAlign="center">
+    <app-view-books-table [books]="books" (openDialogEvent)="openDialog($event)" *ngIf="books && !isLoading && !isGrid"></app-view-books-table>
+    <app-view-books-cards [books]="books" *ngIf="books && !isLoading && isGrid"></app-view-books-cards>
   </div>
 
 </div>
