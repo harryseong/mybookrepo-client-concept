@@ -11,7 +11,7 @@
     </p>
   </div>
   <div class="welcome-actions" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1em">
-    <button mat-stroked-button fxFlex="45">SIGN UP</button>
-    <button mat-stroked-button fxFlex="45" routerLink="library" routerLinkActive="active">LOGIN</button>
+    <button mat-stroked-button fxFlex="45" (click)="openLoginDialog()">LOG IN</button>
+    <button mat-stroked-button fxFlex="45" (click)="openSignupDialog()">SIGN UP</button>
   </div>
 </div>

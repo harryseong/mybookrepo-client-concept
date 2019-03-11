@@ -18,7 +18,7 @@ import {Subscription} from 'rxjs';
   ]
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'Domestic Books';
+  title = 'My Book Repo';
   @ViewChild('sidenav')
   sidenav: MatSidenav;
   $openSidenavSubscription: Subscription;

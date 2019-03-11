@@ -11,12 +11,12 @@
     <span class="spacer"></span>
 
     <div fxLayoutGap="0.2em">
-      <button mat-icon-button [ngClass]="!isGrid ? 'selected view-btn' : 'view-btn'" (click)="updateBooksDisplayStyle(false)">
-        <i class="fas fa-list-ul fa-sm fa-fw"></i>
-      </button>
-
       <button mat-icon-button [ngClass]="isGrid ? 'selected view-btn' : 'view-btn'" (click)="updateBooksDisplayStyle(true)">
         <i class="fas fa-th fa-sm fa-fw"></i>
+      </button>
+
+      <button mat-icon-button [ngClass]="!isGrid ? 'selected view-btn' : 'view-btn'" (click)="updateBooksDisplayStyle(false)">
+        <i class="fas fa-list-ul fa-sm fa-fw"></i>
       </button>
     </div>
 

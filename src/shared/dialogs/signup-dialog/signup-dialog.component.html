@@ -1,0 +1,47 @@
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="start">
+  <div class="page-header">Sign Up</div>
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="closeDialog()">
+    <span><i class="fas fa-times"></i></span>
+  </button>
+</div>
+
+<div mat-dialog-content>
+
+  <form [formGroup]="signupForm" fxLayout="column" fxLayoutGap="1em">
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="1em">
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input type="text" matInput formGroupName="firstName" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input type="text" matInput formGroupName="lastName" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formGroupName="email" required>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="column" fxLayoutGap="1em">
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formGroupName="password" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Confirm Password</mat-label>
+        <input type="password" matInput formGroupName="passwordConfirm" required>
+      </mat-form-field>
+    </div>
+
+  </form>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-stroked-button fxFlex="100" class="create-account-btn">CREATE ACCOUNT</button>
+</div>

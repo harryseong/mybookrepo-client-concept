@@ -31,6 +31,15 @@
   <mat-divider></mat-divider>
 
   <div class="book-details" fxLayout="column">
+    <div *ngIf="data.book.categories!=null">
+      <span class="bold">Genre:</span>&nbsp;
+      <span *ngFor="let category of data.book.categories; let last = last;">
+        <span *ngIf="category!=undefined && category!=null">
+          <span *ngIf="category.name!=undefined">{{category.name}}</span>
+          <span *ngIf="!last">, </span>
+        </span>
+      </span>
+    </div>
     <div *ngIf="data.book.publisher!=null"><span class="bold">Publisher:</span> {{data.book.publisher}}</div>
     <div *ngIf="data.book.publishedDate!=null"><span class="bold">Published:</span> {{data.book.publishedDate}}</div>
     <div *ngIf="data.book.pageCount!=null"><span class="bold">Pages:</span> {{data.book.pageCount}}</div>

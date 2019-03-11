@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/domesticbooks-client",
+    "public": "dist/mybookrepo",
     "ignore": [
       "firebase.json",
       "**/.*",

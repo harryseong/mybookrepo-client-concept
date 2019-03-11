@@ -24,6 +24,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import {LookupBooksComponent} from './user-library/view-books/lookup-books/lookup-books.component';
 import { ProgressSpinnerComponent } from '../shared/progress-spinner/progress-spinner.component';
+import {AccountService} from '../shared/services/account/account.service';
+import {SignupDialogComponent} from '../shared/dialogs/signup-dialog/signup-dialog.component';
+import {LoginDialogComponent} from '../shared/dialogs/login-dialog/login-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,8 @@ import { ProgressSpinnerComponent } from '../shared/progress-spinner/progress-sp
     ViewBooksCardsComponent,
     LookupBooksComponent,
     ProgressSpinnerComponent,
+    SignupDialogComponent,
+    LoginDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,8 +61,11 @@ import { ProgressSpinnerComponent } from '../shared/progress-spinner/progress-sp
   ],
   entryComponents: [
     BookDetailsDialogComponent,
+    LoginDialogComponent,
+    SignupDialogComponent
   ],
   providers: [
+    AccountService,
     ApiService,
     DialogService
   ],

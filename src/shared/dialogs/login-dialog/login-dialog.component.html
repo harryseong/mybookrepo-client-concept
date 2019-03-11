@@ -1,0 +1,27 @@
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="start">
+  <div class="page-header">Log In</div>
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="closeDialog()">
+    <span><i class="fas fa-times"></i></span>
+  </button>
+</div>
+
+<div mat-dialog-content fxLayout="row" fxLayoutAlign="start">
+
+  <form [formGroup]="loginForm" fxLayout="row" fxLayout.xs="column" fxLayoutGap="1em">
+    <mat-form-field fxFlex.xs="100">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formGroupName="email" required>
+    </mat-form-field>
+
+    <mat-form-field fxFlex.xs="100">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput formGroupName="password" required>
+    </mat-form-field>
+  </form>
+
+</div>
+
+<div mat-dialog-actions fxLayoutAlign="center">
+  <button mat-stroked-button fxFlex="100" class="log-in-btn">LOG IN</button>
+</div>

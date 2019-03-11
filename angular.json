@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "domesticbooks-client": {
+    "mybookrepo": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/domesticbooks-client",
+            "outputPath": "dist/mybookrepo",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "domesticbooks-client:build"
+            "browserTarget": "mybookrepo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "domesticbooks-client:build:production"
+              "browserTarget": "mybookrepo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "domesticbooks-client:build"
+            "browserTarget": "mybookrepo:build"
           }
         },
         "test": {
@@ -113,7 +113,7 @@
         }
       }
     },
-    "domesticbooks-client-e2e": {
+    "mybookrepo-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -122,11 +122,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "domesticbooks-client:serve"
+            "devServerTarget": "mybookrepo:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "domesticbooks-client:serve:production"
+              "devServerTarget": "mybookrepo:serve:production"
             }
           }
         },
@@ -142,5 +142,5 @@
       }
     }
   },
-  "defaultProject": "domesticbooks-client"
+  "defaultProject": "mybookrepo"
 }

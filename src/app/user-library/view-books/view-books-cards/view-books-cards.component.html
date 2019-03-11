@@ -12,14 +12,14 @@
           <div>
             <div class="book-title">{{abbreviateTitle(book.title)}}</div>
             <div class="book-author" *ngIf="book.authors!=undefined && book.authors!=null">
-                  <span *ngFor="let author of book.authors; let last = last;">
-                    <span *ngIf="author!=undefined && author!=null">
-                      <span *ngIf="author.firstName!=undefined">{{author.firstName}}&nbsp;</span>
-                      <span *ngIf="author.middleName!=undefined">{{author.middleName}}&nbsp;</span>
-                      <span *ngIf="author.lastName!=undefined">{{author.lastName}}</span>
-                      <span *ngIf="!last">, </span>
-                    </span>
-                  </span>
+              <span *ngFor="let author of book.authors; let last = last;">
+                <span *ngIf="author!=undefined && author!=null">
+                  <span *ngIf="author.firstName!=undefined">{{author.firstName}}&nbsp;</span>
+                  <span *ngIf="author.middleName!=undefined">{{author.middleName}}&nbsp;</span>
+                  <span *ngIf="author.lastName!=undefined">{{author.lastName}}</span>
+                  <span *ngIf="!last">, </span>
+                </span>
+              </span>
             </div>
           </div>
           <div class="book-description">
