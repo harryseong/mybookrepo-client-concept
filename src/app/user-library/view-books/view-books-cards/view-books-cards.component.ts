@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Book} from '../view-books.component';
 import {DialogService} from '../../../../shared/services/dialog/dialog.service';
-import {BookDTO} from '../add-book/add-book.component';
 import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
+import {BookDTO} from '../lookup-books/lookup-books.component';
 
 @Component({
   selector: 'app-view-books-cards',

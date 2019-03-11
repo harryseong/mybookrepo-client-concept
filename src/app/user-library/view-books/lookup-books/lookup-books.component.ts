@@ -1,10 +1,10 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
+import {Subscription} from 'rxjs';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ApiService} from '../../../../shared/services/api/api.service';
 import {DialogService} from '../../../../shared/services/dialog/dialog.service';
-import {Subscription} from 'rxjs';
 import {SnackBarService} from '../../../../shared/services/snackBar/snack-bar.service';
-import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
 
 export class AuthorDTO {
   private firstName: string;
@@ -123,9 +123,9 @@ export class CategoryDTO {
 }
 
 @Component({
-  selector: 'app-add-book',
-  templateUrl: './add-book.component.html',
-  styleUrls: ['./add-book.component.scss'],
+  selector: 'app-lookup-books',
+  templateUrl: './lookup-books.component.html',
+  styleUrls: ['./lookup-books.component.scss'],
   animations: [
     trigger('bookCardAnimations', [
       transition(':enter', [
@@ -135,18 +135,19 @@ export class CategoryDTO {
             sequence([
               animate('0.5s ease', style({ opacity: 1, transform: 'translateY(0)' })),
             ])
-          ]),
-        ])
+          ])
+        ], {optional: true})
       ]),
     ])
   ]
 })
-export class AddBookComponent implements OnInit, OnDestroy {
+export class LookupBooksComponent implements OnInit, OnDestroy {
   $lookupBooks: Subscription;
   $bookAddedToLibrary: Subscription;
   lookupBookForm = new FormGroup({
     searchField: new FormControl('')
   });
+  prevSearchTerm = '';
   bookSearched = false;
   bookDTOArray: BookDTO[] = [];
   isLoading = true;
@@ -172,18 +173,18 @@ export class AddBookComponent implements OnInit, OnDestroy {
 
   lookupBooks() {
     this.bookDTOArray = [];
-    this.bookSearched = false;
+    this.bookSearched = true;
     this.isLoading = true;
-    const searchTerms = this.lookupBookForm.get('searchField').value;
+    this.prevSearchTerm = this.lookupBookForm.get('searchField').value;
     this.searchFieldRef.nativeElement.blur();
 
-    if (this.isISBN(searchTerms)) {
+    if (this.isISBN(this.prevSearchTerm)) {
       console.log('Search term identified as ISBN number');
-      this.lookupBooksByISBN13(searchTerms);
+      this.lookupBooksByISBN13(this.prevSearchTerm);
     } else {
       console.log('Search term not an ISBN number');
-      this.lookupBooksByTitle(searchTerms);
-      this.lookupBooksByAuthor(searchTerms);
+      this.lookupBooksByTitle(this.prevSearchTerm);
+      this.lookupBooksByAuthor(this.prevSearchTerm);
     }
   }
 
@@ -223,7 +224,6 @@ export class AddBookComponent implements OnInit, OnDestroy {
     } else {
       console.log(totalItems + ' book items returned from API call.');
     }
-    this.bookSearched = true;
     this.isLoading = false;
     this.clearSubscriptions();
     this.clearLookupBookForm();

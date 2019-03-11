@@ -9,7 +9,15 @@
     </button>
     <span class="spacer"></span>
     <div fxHide.lt-sm>
-      <button mat-stroked-button routerLinkActive="true" routerLink="">LOGOUT</button>
+      <button mat-button [matMenuTriggerFor]="appMenu">
+        <span><i class="fas fa-user"></i>&nbsp;Harry Seong</span>
+      </button>
+
+      <mat-menu #appMenu="matMenu" yPosition="below" xPosition="before">
+        <button mat-menu-item routerLinkActive="true" routerLink="library">My Library</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item routerLinkActive="true" routerLink=""><i class="fas fa-sign-out-alt fa-fw"></i>&nbsp;Log Out</button>
+      </mat-menu>
     </div>
     <button mat-icon-button fxHide.gt-xs (click)="openSidenav()"><i class="fas fa-bars"></i></button>
 

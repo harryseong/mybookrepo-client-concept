@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {environment} from '../../../environments/environment';
-import {BookDTO} from '../../../app/user-library/view-books/add-book/add-book.component';
 import {Book} from '../../../app/user-library/view-books/view-books.component';
+import {BookDTO} from '../../../app/user-library/view-books/lookup-books/lookup-books.component';
 
 @Injectable({
   providedIn: 'root'

@@ -36,6 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   close(reason: string) {
+    console.log('Sidenav closed via ' + reason);
     this.sidenav.close();
   }
 }

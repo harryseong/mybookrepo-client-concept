@@ -5,7 +5,7 @@
   <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap.xs="0.2em">
 
     <button mat-stroked-button routerLinkActive="true" routerLink="/library/books/lookup">
-      <span><i class="fas fa-search"></i>&nbsp;LOOK UP BOOKS</span>
+      <span><i class="fas fa-search"></i>&nbsp;LOOKUP BOOKS</span>
     </button>
 
     <span class="spacer"></span>
@@ -23,6 +23,8 @@
   </div>
 
   <div fxLayoutAlign="center">
+    <app-progress-spinner *ngIf="isLoading"></app-progress-spinner>
+
     <app-view-books-table [books]="books" (openDialogEvent)="openDialog($event)" *ngIf="books && !isLoading && !isGrid" class="overflow-x-scroll"></app-view-books-table>
     <app-view-books-cards [books]="books" *ngIf="books && !isLoading && isGrid"></app-view-books-cards>
   </div>

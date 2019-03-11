@@ -15,12 +15,15 @@ import {ApiService} from '../shared/services/api/api.service';
 import { BookDetailsDialogComponent } from '../shared/dialogs/book-details-dialog/book-details-dialog.component';
 import {DialogService} from '../shared/services/dialog/dialog.service';
 import { UserLibraryComponent } from './user-library/user-library.component';
-import { AddBookComponent } from './user-library/view-books/add-book/add-book.component';
 import { ViewBooksComponent } from './user-library/view-books/view-books.component';
 import { DashboardComponent } from './user-library/dashboard/dashboard.component';
 import { ViewAuthorsComponent } from './user-library/view-authors/view-authors.component';
 import { ViewBooksTableComponent } from './user-library/view-books/view-books-table/view-books-table.component';
 import { ViewBooksCardsComponent } from './user-library/view-books/view-books-cards/view-books-cards.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import {LookupBooksComponent} from './user-library/view-books/lookup-books/lookup-books.component';
+import { ProgressSpinnerComponent } from '../shared/progress-spinner/progress-spinner.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +34,13 @@ import { ViewBooksCardsComponent } from './user-library/view-books/view-books-ca
     WelcomeComponent,
     BookDetailsDialogComponent,
     UserLibraryComponent,
-    AddBookComponent,
     ViewBooksComponent,
     DashboardComponent,
     ViewAuthorsComponent,
     ViewBooksTableComponent,
     ViewBooksCardsComponent,
+    LookupBooksComponent,
+    ProgressSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,7 @@ import { ViewBooksCardsComponent } from './user-library/view-books/view-books-ca
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   exports: [
     MaterialModule

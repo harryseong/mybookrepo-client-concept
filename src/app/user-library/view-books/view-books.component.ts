@@ -1,11 +1,9 @@
-import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ApiService} from '../../../shared/services/api/api.service';
 import {DialogService} from '../../../shared/services/dialog/dialog.service';
-import {BookDTO} from './add-book/add-book.component';
-import {Author} from '../view-authors/view-authors.component';
 import {SnackBarService} from '../../../shared/services/snackBar/snack-bar.service';
-import {animate, query, sequence, stagger, style, transition, trigger} from '@angular/animations';
+import {Author} from '../view-authors/view-authors.component';
 
 export class Category {
   id: number;

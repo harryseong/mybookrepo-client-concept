@@ -2,9 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MatTableDataSource, Sort} from '@angular/material';
 import {Book} from '../view-books.component';
 import {animate, style, transition, trigger} from '@angular/animations';
-import {BookDTO} from '../add-book/add-book.component';
 import {DialogService} from '../../../../shared/services/dialog/dialog.service';
 import {ApiService} from '../../../../shared/services/api/api.service';
+import {BookDTO} from '../lookup-books/lookup-books.component';
 
 @Component({
   selector: 'app-view-books-table',

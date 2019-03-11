@@ -10,7 +10,7 @@ import {SidenavService} from '../../shared/services/sidenav/sidenav.service';
     trigger('transitionAnimations', [
       transition(':enter', [
         style({transform: 'translateY(-4em)'}),
-        animate('.5s 1s ease'),
+        animate('0.5s ease'),
       ]),
     ])
   ]

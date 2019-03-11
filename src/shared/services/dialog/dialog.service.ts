@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {BookDetailsDialogComponent} from '../../dialogs/book-details-dialog/book-details-dialog.component';
-import {BookDTO} from '../../../app/user-library/view-books/add-book/add-book.component';
+import {BookDTO} from '../../../app/user-library/view-books/lookup-books/lookup-books.component';
 
 @Injectable({
   providedIn: 'root'

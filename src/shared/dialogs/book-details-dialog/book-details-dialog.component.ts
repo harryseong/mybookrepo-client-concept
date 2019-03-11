@@ -1,8 +1,8 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ApiService} from '../../services/api/api.service';
-import {BookDTO} from '../../../app/user-library/view-books/add-book/add-book.component';
 import {Router} from '@angular/router';
+import {BookDTO} from '../../../app/user-library/view-books/lookup-books/lookup-books.component';
 
 @Component({
   selector: 'app-book-details-dialog',

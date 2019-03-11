@@ -3,7 +3,7 @@
 $bg-color: rgba(226, 255, 237, 0.98);
 $bg-color-hover: rgba(216, 245, 227, 0.98);
 
-body, .mat-sidenav-content {
+body, .mat-sidenav-content, .mat-sidenav {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   background-color: $bg-color;
@@ -15,6 +15,21 @@ body, .mat-sidenav-content {
   bottom: 0;
   left: 0;
   right: 0;
+
+  .mat-sidenav {
+    background-color: $bg-color;
+    width: 75%;
+    max-width: 75%;
+
+    .mat-sidenav-top {
+      padding: 1em;
+    }
+
+    .user-name {
+      padding: 0.8em 0;
+      font-weight: 500;
+    }
+  }
 
   .mat-sidenav-content {
     display: flex;
@@ -146,6 +161,10 @@ mat-toolbar.nav-toolbar {
 
 .book-details-dialog .mat-dialog-container {
   background-color: $bg-color;
+}
+
+.bold {
+  font-weight: 500;
 }
 
 .overflow-x-scroll {

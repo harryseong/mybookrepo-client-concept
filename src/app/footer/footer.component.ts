@@ -8,8 +8,8 @@ import {animate, style, transition, trigger} from '@angular/animations';
   animations: [
     trigger('transitionAnimations', [
       transition(':enter', [
-        style({transform: 'translateY(0)'}),
-        animate('.5s 1s ease'),
+        style({transform: 'translateY(7em)'}),
+        animate('.5s ease'),
       ]),
     ])
   ]
