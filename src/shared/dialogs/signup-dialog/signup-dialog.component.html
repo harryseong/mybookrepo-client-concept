@@ -12,29 +12,56 @@
     <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="1em">
       <mat-form-field>
         <mat-label>First Name</mat-label>
-        <input type="text" matInput formGroupName="firstName" required>
+        <input type="text" matInput formControlName="firstName" required [errorStateMatcher]="matcher">
+        <mat-error *ngIf="signupForm.get('firstName').hasError('required')">
+          First name is required.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Last Name</mat-label>
-        <input type="text" matInput formGroupName="lastName" required>
+        <input type="text" matInput formControlName="lastName" required [errorStateMatcher]="matcher">
+        <mat-error *ngIf="signupForm.get('lastName').hasError('required')">
+          Last name is required.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Email</mat-label>
-        <input type="email" matInput formGroupName="email" required>
+        <input type="email" matInput formControlName="email" required (keyup)="checkUserInDB()" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="signupForm.get('email').hasError('required')">
+          Email is required.
+        </mat-error>
+        <mat-error *ngIf="signupForm.get('email').hasError('email')">
+          Enter a valid email address.
+        </mat-error>
+        <mat-error *ngIf="signupForm.get('email').hasError('accountAlreadyExists')">
+          This account already exists.
+        </mat-error>
       </mat-form-field>
     </div>
 
     <div fxLayout="column" fxLayoutGap="1em">
       <mat-form-field>
         <mat-label>Password</mat-label>
-        <input type="password" matInput formGroupName="password" required>
+        <input type="password" matInput formControlName="password" required (keyup)="verifyPassword()" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="signupForm.get('password').hasError('required')">
+          Password is required.
+        </mat-error>
+        <mat-error *ngIf="signupForm.get('password').hasError('passwordsDoNotMatch')">
+          Passwords do not match.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Confirm Password</mat-label>
-        <input type="password" matInput formGroupName="passwordConfirm" required>
+        <input type="password" matInput formControlName="passwordConfirm" required (keyup)="verifyPassword()" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="signupForm.get('passwordConfirm').hasError('required')">
+          Please verify the password.
+        </mat-error>
+        <mat-error *ngIf="signupForm.get('passwordConfirm').hasError('passwordsDoNotMatch')">
+          Passwords do not match.
+        </mat-error>
       </mat-form-field>
     </div>
 
@@ -43,5 +70,5 @@
 </div>
 
 <div mat-dialog-actions>
-  <button mat-stroked-button fxFlex="100" class="create-account-btn">CREATE ACCOUNT</button>
+  <button mat-stroked-button type="button" fxFlex="100" class="create-account-btn" [disabled]="!signupForm.valid" (click)="signup()">CREATE ACCOUNT</button>
 </div>

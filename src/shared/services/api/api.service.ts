@@ -24,19 +24,19 @@ export class ApiService {
 
   // BookDB API Endpoints
   getAllAuthors(): Observable<any> {
-    return this.http.get(environment.bookdb_api_url + '/author/');
+    return this.http.get(environment.bookdb_api_url + 'author/');
   }
 
   getAuthor(authorId: number): Observable<any> {
-    return this.http.get(environment.bookdb_api_url + '/author/' + authorId);
+    return this.http.get(environment.bookdb_api_url + 'author/' + authorId);
   }
 
   getAllBooks(): Observable<any> {
-    return this.http.get(environment.bookdb_api_url + '/book/');
+    return this.http.get(environment.bookdb_api_url + 'book/');
   }
 
   getBook(bookId: number): Observable<any> {
-    return this.http.get(environment.bookdb_api_url + '/book/' + bookId);
+    return this.http.get(environment.bookdb_api_url + 'book/' + bookId);
   }
 
   addBookToLibrary(bookDTO: BookDTO) {
