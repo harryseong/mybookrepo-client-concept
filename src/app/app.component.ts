@@ -36,6 +36,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.$openSidenavSubscription.unsubscribe();
   }
 
+  logout() {
+    this.close('log out');
+    this.userService.logout();
+  }
+
   close(reason: string) {
     console.log('Sidenav closed via ' + reason);
     this.sidenav.close();

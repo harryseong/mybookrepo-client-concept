@@ -3,12 +3,10 @@
   <mat-sidenav class="mat-sidenav" #sidenav (keydown.escape)="close('escape')" disableClose>
 
     <div fxLayout="row" fxLayoutAlign="start" class="mat-sidenav-top">
-      <div class="user-name" *ngIf="userService.accessToken != null">
-        <i class="fas fa-user"></i>&nbsp;Harry Seong
+      <div class="user-name" *ngIf="userService.accessToken != null" fxLayout="row" fxLayoutAlign="center center">
+        <img [src]="userService.gravatarProfileImg" class="gravatar-profile-img" alt="">{{userService.userFullName}}
       </div>
-
       <span class="spacer"></span>
-
       <button mat-icon-button (click)="close('close icon')">
         <span><i class="fas fa-times"></i></span>
       </button>
@@ -19,7 +17,7 @@
       <mat-divider></mat-divider>
 
       <button mat-menu-item routerLinkActive="true" routerLink="library" (click)="close('router')">My Library</button>
-      <button mat-menu-item routerLinkActive="true" routerLink="" (click)="close('router')"><i class="fas fa-sign-out-alt fa-fw"></i>&nbsp;Log Out</button>
+      <button mat-menu-item routerLinkActive="true" (click)="logout()"><i class="fas fa-sign-out-alt fa-fw"></i>&nbsp;Log Out</button>
 
       <mat-divider></mat-divider>
 

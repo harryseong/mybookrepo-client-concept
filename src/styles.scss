@@ -26,7 +26,6 @@ body, .mat-sidenav-content, .mat-sidenav {
     }
 
     .user-name {
-      padding: 0.8em 0;
       font-weight: 500;
     }
   }
@@ -169,4 +168,10 @@ mat-toolbar.nav-toolbar {
 
 .overflow-x-scroll {
   overflow-x: scroll;
+}
+
+.gravatar-profile-img {
+  border-radius: 50%;
+  height: 2em;
+  margin-right: 0.3em;
 }
