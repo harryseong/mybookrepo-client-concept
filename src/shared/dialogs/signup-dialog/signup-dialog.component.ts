@@ -45,7 +45,7 @@ export class SignupDialogComponent implements OnInit {
   }
 
   checkUserInDB() {
-    this.userService.checkUserInDB(this.signupForm.get('email').value).subscribe(
+    this.userService.getUserByEmail(this.signupForm.get('email').value).subscribe(
       rsp => {
         if (rsp != null) {
           this.signupForm.get('email').setErrors({accountAlreadyExists: true});

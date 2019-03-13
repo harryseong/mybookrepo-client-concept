@@ -4,6 +4,7 @@ import {Observable, Subject} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {Book} from '../../../app/user-library/view-books/view-books.component';
 import {BookDTO} from '../../../app/user-library/view-books/lookup-books/lookup-books.component';
+import {TOKEN_AUTH_PASSWORD, TOKEN_AUTH_USERNAME, TOKEN_NAME} from '../auth/auth.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,12 @@ export class ApiService {
   }
 
   getAllBooks(): Observable<any> {
-    return this.http.get(environment.bookdb_api_url + 'book/');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+      })
+    };
+    return this.http.get(environment.bookdb_api_url + 'book/', httpOptions);
   }
 
   getBook(bookId: number): Observable<any> {
@@ -40,14 +46,20 @@ export class ApiService {
   }
 
   addBookToLibrary(bookDTO: BookDTO) {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(environment.bookdb_api_url + '/user/book/', bookDTO, {headers, responseType: 'text'});
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem(TOKEN_NAME),
+    });
+    return this.http.post(environment.bookdb_api_url + 'library/book/', bookDTO, {headers, responseType: 'text'});
   }
 
   removeBookFromLibrary(bookId: string, userId: string) {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+    });
     const params = new HttpParams().set('bookId', bookId).set('userId', userId);
-    return this.http.delete(environment.bookdb_api_url + '/user/book/', {params, headers, responseType: 'text'});
+    return this.http.delete(environment.bookdb_api_url + 'library/book/', {params, headers, responseType: 'text'});
   }
 
   // Google Books API Endpoints

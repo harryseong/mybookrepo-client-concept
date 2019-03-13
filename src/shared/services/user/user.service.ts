@@ -11,9 +11,9 @@ import {Router} from '@angular/router';
 })
 export class UserService {
   accessToken: string;
-  isAdmin: boolean;
-  userFullName: string;
+  isAdmin: false;
   username: string;
+  userFullName: string;
   jwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -23,6 +23,10 @@ export class UserService {
     console.log(decodedToken);
 
     this.isAdmin = decodedToken.authorities.some(el => el === 'admin');
+    this.username = decodedToken.user_name;
+    this.getUserByEmail(this.username).subscribe(
+      (rsp: UserDTO) => this.userFullName = rsp.firstName + ' ' + rsp.lastName
+    );
     this.accessToken = accessToken;
 
     localStorage.setItem(TOKEN_NAME, accessToken);
@@ -33,7 +37,10 @@ export class UserService {
   logout() {
     this.accessToken = null;
     this.isAdmin = false;
+    this.username = null;
+    this.userFullName = null;
     localStorage.removeItem(TOKEN_NAME);
+    this.router.navigate(['']);
   }
 
   isAdminUser(): boolean {
@@ -49,7 +56,7 @@ export class UserService {
     return this.http.post(environment.bookdb_api_url + 'user', userDTO, {headers, responseType: 'text'});
   }
 
-  checkUserInDB(email: string) {
+  getUserByEmail(email: string) {
     return this.http.get(environment.bookdb_api_url + 'user/email/' + email);
   }
 }
