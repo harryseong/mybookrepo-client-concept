@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
-import {AccountService} from '../../services/account/account.service';
 import {ErrorStateMatcher} from '@angular/material/typings/esm5/core';
+import {UserService} from '../../services/user/user.service';
 
 export interface UserDTO {
   firstName: string;
@@ -35,7 +35,7 @@ export class SignupDialogComponent implements OnInit {
     passwordConfirm: new FormControl('', [Validators.required]),
   });
 
-  constructor(public dialogRef: MatDialogRef<SignupDialogComponent>, private accountService: AccountService) { }
+  constructor(public dialogRef: MatDialogRef<SignupDialogComponent>, private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -45,7 +45,7 @@ export class SignupDialogComponent implements OnInit {
   }
 
   checkUserInDB() {
-    this.accountService.checkUserInDB(this.signupForm.get('email').value).subscribe(
+    this.userService.checkUserInDB(this.signupForm.get('email').value).subscribe(
       rsp => {
         if (rsp != null) {
           this.signupForm.get('email').setErrors({accountAlreadyExists: true});
@@ -75,7 +75,7 @@ export class SignupDialogComponent implements OnInit {
       password: form.password
     };
 
-    this.accountService.signup(userDTO).subscribe(
+    this.userService.signup(userDTO).subscribe(
       rsp => {
         console.log(rsp);
         this.signupForm.reset();
