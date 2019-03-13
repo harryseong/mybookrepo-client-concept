@@ -3,6 +3,8 @@ import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@a
 import {MatDialogRef} from '@angular/material';
 import {ErrorStateMatcher} from '@angular/material/typings/esm5/core';
 import {UserService} from '../../services/user/user.service';
+import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth/auth.service';
 
 export interface UserDTO {
   firstName: string;
@@ -35,7 +37,7 @@ export class SignupDialogComponent implements OnInit {
     passwordConfirm: new FormControl('', [Validators.required]),
   });
 
-  constructor(public dialogRef: MatDialogRef<SignupDialogComponent>, private userService: UserService) { }
+  constructor(public dialogRef: MatDialogRef<SignupDialogComponent>, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -57,16 +59,25 @@ export class SignupDialogComponent implements OnInit {
 
   verifyPassword() {
     const form = this.signupForm.value;
-    // if (form.password !== form.passwordConfirm) {
-    //   this.signupForm.get('password').setErrors({passwordsDoNotMatch: true});
-    //   this.signupForm.get('passwordConfirm').setErrors({passwordsDoNotMatch: true});
-    //   console.warn('The passwords do not match.');
-    // }
+    if (this.signupForm.get('password').touched && this.signupForm.get('passwordConfirm').touched &&
+      form.password !== form.passwordConfirm) {
+      this.signupForm.get('password').setErrors({passwordsDoNotMatch: true});
+      this.signupForm.get('passwordConfirm').setErrors({passwordsDoNotMatch: true});
+      console.warn('The passwords do not match.');
+    } else if (this.signupForm.get('password').touched && this.signupForm.get('passwordConfirm').touched &&
+      form.password === form.passwordConfirm) {
+       if (form.password.length === 0) {
+         this.signupForm.get('password').setErrors({required: true});
+         this.signupForm.get('passwordConfirm').setErrors({required: true});
+       } else {
+         this.signupForm.get('password').setErrors(null);
+         this.signupForm.get('passwordConfirm').setErrors(null);
+       }
+    }
   }
 
   signup() {
     const form = this.signupForm.value;
-    console.log('The passwords match.');
     const userDTO: UserDTO = {
       firstName: form.firstName,
       middleName: '',
@@ -79,7 +90,20 @@ export class SignupDialogComponent implements OnInit {
       rsp => {
         console.log(rsp);
         this.signupForm.reset();
+        this.login(userDTO.email, userDTO.password);
       },
       error1 => console.error(error1));
+  }
+
+  login(username: string, password: string) {
+    this.authService.login(username, password).subscribe(
+      (rsp: any) => {
+        this.closeDialog();
+        this.userService.login(rsp.access_token);
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
 }

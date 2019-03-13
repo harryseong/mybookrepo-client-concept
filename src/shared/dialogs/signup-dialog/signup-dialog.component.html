@@ -57,7 +57,7 @@
         <mat-label>Confirm Password</mat-label>
         <input type="password" matInput formControlName="passwordConfirm" required (keyup)="verifyPassword()" [errorStateMatcher]="matcher">
         <mat-error *ngIf="signupForm.get('passwordConfirm').hasError('required')">
-          Please verify the password.
+          Password is required.
         </mat-error>
         <mat-error *ngIf="signupForm.get('passwordConfirm').hasError('passwordsDoNotMatch')">
           Passwords do not match.
