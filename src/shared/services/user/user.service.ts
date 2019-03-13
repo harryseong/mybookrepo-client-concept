@@ -11,7 +11,7 @@ import * as crypto from 'crypto-js';
   providedIn: 'root'
 })
 export class UserService {
-  accessToken: string;
+  accessToken: string = null;
   isAdmin: false;
   username: string;
   userFullName: string;
