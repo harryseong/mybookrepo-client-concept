@@ -30,7 +30,7 @@ export class DialogService {
 
   openLoginDialog() {
     const dialogRef = this.dialog.open(LoginDialogComponent, {
-      width: '30em',
+      width: '35em',
       autoFocus: false,
       panelClass: 'login-dialog',
     });

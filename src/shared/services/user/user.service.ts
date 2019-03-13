@@ -4,6 +4,7 @@ import {UserDTO} from '../../dialogs/signup-dialog/signup-dialog.component';
 import {environment} from '../../../environments/environment';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {TOKEN_NAME} from '../auth/auth.constants';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,11 @@ import {TOKEN_NAME} from '../auth/auth.constants';
 export class UserService {
   accessToken: string;
   isAdmin: boolean;
+  userFullName: string;
+  username: string;
   jwtHelperService = new JwtHelperService();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(accessToken: string) {
     const decodedToken = this.jwtHelperService.decodeToken(accessToken);
@@ -23,6 +26,8 @@ export class UserService {
     this.accessToken = accessToken;
 
     localStorage.setItem(TOKEN_NAME, accessToken);
+
+    this.router.navigate(['library']);
   }
 
   logout() {
