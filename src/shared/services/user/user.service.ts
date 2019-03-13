@@ -5,6 +5,7 @@ import {environment} from '../../../environments/environment';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {TOKEN_NAME} from '../auth/auth.constants';
 import {Router} from '@angular/router';
+import * as crypto from 'crypto-js';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class UserService {
   isAdmin: false;
   username: string;
   userFullName: string;
+  gravatarProfileImg: string;
   jwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -24,6 +26,7 @@ export class UserService {
 
     this.isAdmin = decodedToken.authorities.some(el => el === 'admin');
     this.username = decodedToken.user_name;
+    this.gravatarProfileImg = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.username).toString();
     this.getUserByEmail(this.username).subscribe(
       (rsp: UserDTO) => this.userFullName = rsp.firstName + ' ' + rsp.lastName
     );

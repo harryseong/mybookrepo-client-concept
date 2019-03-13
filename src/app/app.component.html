@@ -3,7 +3,7 @@
   <mat-sidenav class="mat-sidenav" #sidenav (keydown.escape)="close('escape')" disableClose>
 
     <div fxLayout="row" fxLayoutAlign="start" class="mat-sidenav-top">
-      <div class="user-name">
+      <div class="user-name" *ngIf="userService.accessToken != null">
         <i class="fas fa-user"></i>&nbsp;Harry Seong
       </div>
 
@@ -14,12 +14,16 @@
       </button>
     </div>
 
-    <mat-divider></mat-divider>
+    <div *ngIf="userService.accessToken != null">
 
-    <button mat-menu-item routerLinkActive="true" routerLink="library" (click)="close('router')">My Library</button>
-    <button mat-menu-item routerLinkActive="true" routerLink="" (click)="close('router')"><i class="fas fa-sign-out-alt fa-fw"></i>&nbsp;Log Out</button>
+      <mat-divider></mat-divider>
 
-    <mat-divider></mat-divider>
+      <button mat-menu-item routerLinkActive="true" routerLink="library" (click)="close('router')">My Library</button>
+      <button mat-menu-item routerLinkActive="true" routerLink="" (click)="close('router')"><i class="fas fa-sign-out-alt fa-fw"></i>&nbsp;Log Out</button>
+
+      <mat-divider></mat-divider>
+
+    </div>
 
   </mat-sidenav>
 

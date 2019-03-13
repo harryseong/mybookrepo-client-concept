@@ -3,6 +3,7 @@ import {animate, style, transition, trigger} from '@angular/animations';
 import {MatSidenav} from '@angular/material';
 import {SidenavService} from '../shared/services/sidenav/sidenav.service';
 import {Subscription} from 'rxjs';
+import {UserService} from '../shared/services/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
   sidenav: MatSidenav;
   $openSidenavSubscription: Subscription;
 
-  constructor(private sidenavService: SidenavService) {}
+  constructor(private sidenavService: SidenavService, public userService: UserService) {}
 
   ngOnInit(): void {
     this.$openSidenavSubscription = this.sidenavService.$openSidenavEvent.subscribe(

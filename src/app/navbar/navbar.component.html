@@ -10,7 +10,9 @@
     <span class="spacer"></span>
     <div fxHide.lt-sm>
       <button mat-button [matMenuTriggerFor]="appMenu" *ngIf="userService.accessToken != null">
-        <span><i class="fas fa-user"></i>&nbsp;{{userService.userFullName}}</span>
+        <span>
+          <img [src]="userService.gravatarProfileImg" class="gravatar-profile-img" alt="">&nbsp;{{userService.userFullName}}
+        </span>
       </button>
 
       <mat-menu #appMenu="matMenu" yPosition="below" xPosition="before">
