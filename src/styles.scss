@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800');
 
-$bg-color: rgba(226, 255, 237, 0.98);
-$bg-color-hover: rgba(216, 245, 227, 0.98);
+//$bg-color: rgba(226, 255, 237, 0.98);
+//$bg-color-hover: rgba(216, 245, 227, 0.98);
+$bg-color: rgb(255, 255, 255);
+$bg-color-hover: rgb(245, 245, 245);
 
 body, .mat-sidenav-content, .mat-sidenav {
   margin: 0;
