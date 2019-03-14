@@ -1,6 +1,5 @@
-<mat-sidenav-container
-  class="mat-sidenav-container" (backdropClick)="close('backdrop')">
-  <mat-sidenav class="mat-sidenav" #sidenav (keydown.escape)="close('escape')" disableClose>
+<mat-sidenav-container class="mat-sidenav-container" (backdropClick)="close('backdrop')">
+  <mat-sidenav class="mat-sidenav xs" #sidenav (keydown.escape)="close('escape')" disableClose fxHide.gt-xs mode="over">
 
     <div fxLayout="row" fxLayoutAlign="start" class="mat-sidenav-top">
       <div class="user-name" *ngIf="userService.accessToken != null" fxLayout="row" fxLayoutAlign="center center">
@@ -26,11 +25,15 @@
 
   </mat-sidenav>
 
+  <!--<mat-sidenav class="mat-sidenav gt-xs" fxHide.xs opened mode="side">-->
+    <!--Test-->
+  <!--</mat-sidenav>-->
+
   <mat-sidenav-content class="mat-sidenav-content">
 
     <app-navbar [title]="title"></app-navbar>
 
-    <div class="container" ngClass.lt-sm="xs" [@backgroundAnimations]>
+    <div class="container" ngClass.lt-sm="xs">
       <router-outlet></router-outlet>
     </div>
 

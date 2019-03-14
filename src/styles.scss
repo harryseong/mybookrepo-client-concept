@@ -18,7 +18,7 @@ body, .mat-sidenav-content, .mat-sidenav {
   left: 0;
   right: 0;
 
-  .mat-sidenav {
+  .mat-sidenav.xs {
     background-color: $bg-color;
     width: 75%;
     max-width: 75%;
@@ -30,6 +30,11 @@ body, .mat-sidenav-content, .mat-sidenav {
     .user-name {
       font-weight: 500;
     }
+  }
+
+  .mat-sidenav.gt-xs{
+    width: 25%;
+    max-width: 25%;
   }
 
   .mat-sidenav-content {

@@ -25,8 +25,8 @@
   <div fxLayoutAlign="center">
     <app-progress-spinner *ngIf="isLoading"></app-progress-spinner>
 
-    <app-view-books-table [books]="books" (openDialogEvent)="openDialog($event)" *ngIf="books && !isLoading && !isGrid" class="overflow-x-scroll"></app-view-books-table>
-    <app-view-books-cards [books]="books" *ngIf="books && !isLoading && isGrid"></app-view-books-cards>
+    <app-view-books-table [books]="books" (openDialogEvent)="openDialog($event)" *ngIf="books && books.length > 0 && !isLoading && !isGrid" class="overflow-x-scroll"></app-view-books-table>
+    <app-view-books-cards [books]="books" *ngIf="books && books.length > 0 && !isLoading && isGrid"></app-view-books-cards>
   </div>
 
 </div>

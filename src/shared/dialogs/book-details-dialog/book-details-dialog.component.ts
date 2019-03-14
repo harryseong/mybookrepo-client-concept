@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ApiService} from '../../services/api/api.service';
 import {Router} from '@angular/router';
 import {BookDTO} from '../../../app/user-library/view-books/lookup-books/lookup-books.component';
+import {UserService} from '../../services/user/user.service';
 
 @Component({
   selector: 'app-book-details-dialog',
@@ -13,7 +14,7 @@ export class BookDetailsDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<BookDetailsDialogComponent>,
               private apiService: ApiService,
-              private router: Router,
+              private router: Router, public userService: UserService,
               @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   closeDialog(): void {
@@ -21,7 +22,7 @@ export class BookDetailsDialogComponent {
   }
 
   addBook(bookDTO: BookDTO) {
-    this.apiService.addBookToLibrary(bookDTO).subscribe(rsp => {
+    this.apiService.addBookToLibrary(bookDTO, this.userService.user.id).subscribe(rsp => {
       console.log(rsp);
       this.apiService.bookAddedToLibrary(bookDTO);
       this.closeDialog();
@@ -31,7 +32,7 @@ export class BookDetailsDialogComponent {
   }
 
   removeBook(book) {
-    this.apiService.removeBookFromLibrary(book.id, '1').subscribe(
+    this.apiService.removeBookFromLibrary(book.id, this.userService.user.id).subscribe(
       rsp => {
         console.log(rsp);
         this.apiService.bookRemovedFromLibrary(book);

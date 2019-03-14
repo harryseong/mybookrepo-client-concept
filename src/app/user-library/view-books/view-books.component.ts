@@ -4,6 +4,7 @@ import {ApiService} from '../../../shared/services/api/api.service';
 import {DialogService} from '../../../shared/services/dialog/dialog.service';
 import {SnackBarService} from '../../../shared/services/snackBar/snack-bar.service';
 import {Author} from '../view-authors/view-authors.component';
+import {UserService} from '../../../shared/services/user/user.service';
 
 export class Category {
   id: number;
@@ -59,7 +60,8 @@ export class ViewBooksComponent implements OnInit, OnDestroy {
   isLoading = true;
   isGrid = true;
 
-  constructor(private apiService: ApiService, private dialogService: DialogService, private snackBarService: SnackBarService) {
+  constructor(private apiService: ApiService, private dialogService: DialogService, private snackBarService: SnackBarService,
+              public userService: UserService) {
   }
 
   ngOnInit() {
@@ -80,7 +82,7 @@ export class ViewBooksComponent implements OnInit, OnDestroy {
 
   getMyLibraryBooks() {
     this.books = [];
-    this.$allBooks = this.apiService.getAllBooks().subscribe(
+    this.$allBooks = this.apiService.getAllBooks(this.userService.user.id).subscribe(
       rsp => {
         rsp.map(book => {
           this.books.push(new Book(book));

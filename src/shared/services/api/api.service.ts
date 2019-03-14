@@ -25,32 +25,28 @@ export class ApiService {
 
   // BookDB API Endpoints
   getAllAuthors(): Observable<any> {
-    return this.http.get(environment.bookdb_api_url + 'author/');
+    return this.http.get(environment.bookdb_api_url + 'author');
   }
 
   getAuthor(authorId: number): Observable<any> {
     return this.http.get(environment.bookdb_api_url + 'author/' + authorId);
   }
 
-  getAllBooks(): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + localStorage.getItem(TOKEN_NAME)
-      })
-    };
-    return this.http.get(environment.bookdb_api_url + 'book/', httpOptions);
+  getAllBooks(userId: string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem(TOKEN_NAME)
+    });
+    const params = new HttpParams().set('userId', userId);
+    return this.http.get(environment.bookdb_api_url + 'library/books', {params, headers});
   }
 
-  getBook(bookId: number): Observable<any> {
-    return this.http.get(environment.bookdb_api_url + 'book/' + bookId);
-  }
-
-  addBookToLibrary(bookDTO: BookDTO) {
+  addBookToLibrary(bookDTO: BookDTO, userId: string) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem(TOKEN_NAME),
     });
-    return this.http.post(environment.bookdb_api_url + 'library/book/', bookDTO, {headers, responseType: 'text'});
+    const params = new HttpParams().set('userId', userId);
+    return this.http.post(environment.bookdb_api_url + 'library/book', bookDTO, {params, headers, responseType: 'text'});
   }
 
   removeBookFromLibrary(bookId: string, userId: string) {
@@ -59,7 +55,7 @@ export class ApiService {
       Authorization: 'Bearer ' + localStorage.getItem(TOKEN_NAME)
     });
     const params = new HttpParams().set('bookId', bookId).set('userId', userId);
-    return this.http.delete(environment.bookdb_api_url + 'library/book/', {params, headers, responseType: 'text'});
+    return this.http.delete(environment.bookdb_api_url + 'library/book', {params, headers, responseType: 'text'});
   }
 
   // Google Books API Endpoints

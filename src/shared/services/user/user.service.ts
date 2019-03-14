@@ -15,6 +15,7 @@ export class UserService {
   isAdmin: false;
   username: string;
   userFullName: string;
+  user: any;
   gravatarProfileImg: string;
   jwtHelperService = new JwtHelperService();
 
@@ -28,7 +29,10 @@ export class UserService {
     this.username = decodedToken.user_name;
     this.gravatarProfileImg = 'https://www.gravatar.com/avatar/' + crypto.MD5(this.username).toString();
     this.getUserByEmail(this.username).subscribe(
-      (rsp: UserDTO) => this.userFullName = rsp.firstName + ' ' + rsp.lastName
+      (rsp: any) => {
+        this.user = rsp;
+        this.userFullName = rsp.firstName + ' ' + rsp.lastName;
+      }
     );
     this.accessToken = accessToken;
 
