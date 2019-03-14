@@ -33,6 +33,9 @@ export class LoginDialogComponent implements OnInit {
   }
 
   login() {
+    if (!this.loginForm.valid) {
+      return;
+    }
     this.resetErrors();
     const username = this.loginForm.get('email').value;
     const password = this.loginForm.get('password').value;

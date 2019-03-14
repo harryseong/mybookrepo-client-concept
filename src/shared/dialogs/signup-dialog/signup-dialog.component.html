@@ -12,7 +12,7 @@
     <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="1em">
       <mat-form-field>
         <mat-label>First Name</mat-label>
-        <input type="text" matInput formControlName="firstName" required [errorStateMatcher]="matcher">
+        <input type="text" matInput formControlName="firstName" required (keyup.enter)="signup()" [errorStateMatcher]="matcher">
         <mat-error *ngIf="signupForm.get('firstName').hasError('required')">
           First name is required.
         </mat-error>
@@ -20,7 +20,7 @@
 
       <mat-form-field>
         <mat-label>Last Name</mat-label>
-        <input type="text" matInput formControlName="lastName" required [errorStateMatcher]="matcher">
+        <input type="text" matInput formControlName="lastName" required (keyup.enter)="signup()" [errorStateMatcher]="matcher">
         <mat-error *ngIf="signupForm.get('lastName').hasError('required')">
           Last name is required.
         </mat-error>
@@ -28,7 +28,7 @@
 
       <mat-form-field>
         <mat-label>Email</mat-label>
-        <input type="email" matInput formControlName="email" required (keyup)="checkUserInDB()" [errorStateMatcher]="matcher">
+        <input type="email" matInput formControlName="email" required (keyup)="checkUserInDB()" (keyup.enter)="signup()" [errorStateMatcher]="matcher">
         <mat-error *ngIf="signupForm.get('email').hasError('required')">
           Email is required.
         </mat-error>
@@ -44,7 +44,7 @@
     <div fxLayout="column" fxLayoutGap="1em">
       <mat-form-field>
         <mat-label>Password</mat-label>
-        <input type="password" matInput formControlName="password" required (keyup)="verifyPassword()" [errorStateMatcher]="matcher">
+        <input type="password" matInput formControlName="password" required (keyup)="verifyPassword()" (keyup.enter)="signup()" [errorStateMatcher]="matcher">
         <mat-error *ngIf="signupForm.get('password').hasError('required')">
           Password is required.
         </mat-error>
@@ -55,7 +55,7 @@
 
       <mat-form-field>
         <mat-label>Confirm Password</mat-label>
-        <input type="password" matInput formControlName="passwordConfirm" required (keyup)="verifyPassword()" [errorStateMatcher]="matcher">
+        <input type="password" matInput formControlName="passwordConfirm" required (keyup)="verifyPassword()" (keyup.enter)="signup()" [errorStateMatcher]="matcher">
         <mat-error *ngIf="signupForm.get('passwordConfirm').hasError('required')">
           Password is required.
         </mat-error>
@@ -70,5 +70,5 @@
 </div>
 
 <div mat-dialog-actions>
-  <button mat-stroked-button type="button" fxFlex="100" class="create-account-btn" [disabled]="!signupForm.valid" (click)="signup()">CREATE ACCOUNT</button>
+  <button mat-stroked-button type="button" fxFlex="100" class="create-account-btn" [disabled]="!signupForm.valid" (keyup.enter)="signup()" (click)="signup()">CREATE ACCOUNT</button>
 </div>

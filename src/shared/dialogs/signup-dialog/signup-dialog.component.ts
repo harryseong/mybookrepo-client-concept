@@ -77,6 +77,9 @@ export class SignupDialogComponent implements OnInit {
   }
 
   signup() {
+    if (!this.signupForm.valid) {
+      return;
+    }
     const form = this.signupForm.value;
     const userDTO: UserDTO = {
       firstName: form.firstName,
