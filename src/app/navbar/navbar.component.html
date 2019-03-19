@@ -3,7 +3,7 @@
 
     <button mat-icon-button fxHide.gt-xs fxFlexOrder.xs="1" (click)="openSidenav()" *ngIf="userService.accessToken != null"><i class="fas fa-bars"></i></button>
 
-    <button mat-button class="logo" routerLink="" routerLinkActive="active" fxFlexOrder="1" fxFlexOrder.xs="3">
+    <button mat-button class="logo" routerLink="" routerLinkActive="active" fxFlexOrder="1" fxFlexOrder.xs="2">
       <span fxLayout="row" fxLayoutGap="0.1em">
         <span><i class="fas fa-book"></i></span>
         <span><i class="fas fa-database"></i></span>
@@ -11,7 +11,7 @@
       </span>
     </button>
 
-    <span class="spacer" fxFlexOrder="2" fxFlexOrder.xs="2"></span>
+    <span class="spacer" fxFlexOrder="2" fxFlexOrder.xs="3"></span>
 
     <div fxHide.lt-sm fxFlexOrder="3">
       <button mat-button [matMenuTriggerFor]="appMenu" *ngIf="userService.accessToken != null" fxLayout="row" fxLayoutAlign="center center">

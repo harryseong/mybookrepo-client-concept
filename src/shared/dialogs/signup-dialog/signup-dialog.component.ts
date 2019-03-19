@@ -3,7 +3,6 @@ import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@a
 import {MatDialogRef} from '@angular/material';
 import {ErrorStateMatcher} from '@angular/material/typings/esm5/core';
 import {UserService} from '../../services/user/user.service';
-import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth/auth.service';
 
 export interface UserDTO {
@@ -33,7 +32,7 @@ export class SignupDialogComponent implements OnInit {
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required, Validators.pattern('[^A-Za-z0-9]')]),
     passwordConfirm: new FormControl('', [Validators.required]),
   });
 
@@ -49,7 +48,7 @@ export class SignupDialogComponent implements OnInit {
   checkUserInDB() {
     this.userService.getUserByEmail(this.signupForm.get('email').value).subscribe(
       rsp => {
-        if (rsp != null) {
+        if (rsp === false) {
           this.signupForm.get('email').setErrors({accountAlreadyExists: true});
           console.warn('Account already exists.');
         }
